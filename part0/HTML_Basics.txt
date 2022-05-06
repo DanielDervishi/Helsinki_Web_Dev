@@ -1,0 +1,57 @@
+Anatomy of HTML Element:
+    - Opening Tag: Name of element wrapped in open and closing angle brackets. Ex: <p>
+    - Closing Tag: Name of element with a closing slash behind the opening angle bracket. Ex: </p>
+    - Content: The item to be stored within the tag. Ex: "The cat ran"
+    - Element: The conjunction of opening and closing tags as well as content. Ex: <p> </p>
+
+    - Attributes: More data about an HTML element.
+        - Types of Attributes:
+            - Class Attribute: Gives a non-unique identifier to target an html, for example: when styling. Ex: <p class = "Daniel">"Welcome to the Jungle"</p>
+
+        - Necessary Properties of Attribues:
+            - An attribute should have a space between it and the element name.
+            - The attribute name should be followed by an equals sign as well as the value of the attribute wrapped in quotation marks.
+
+Empty Elements:
+    - Some elements have no content and are referred to as empty elements Ex: <img src = "google.com/fullstack_open" alt = "Something">
+
+Anatomy of an HTML document:
+    - <!DOCTYPE html> - Used to make sure your document is syntactically and semantically correct? (They didn't expand much).
+    - <html></html> - the html element. (root element)
+    - <meta charset="utf-8"> - Explains the character set that your file will use to operate with (Embedded within the head).
+    - <title></title> - Sets the title of the webpage - a.k.a. the text that distinguishes tabs on the top of your chrome browser (Embedded within the head). 
+    - <body></body> - Contains all content that users will see on the page.
+
+Images:
+    - Ex: <img src="images/firefox-icon.png" alt="My test image">
+    - Uses the src attribute to display an image from the path defined by src.
+    - The alt attribute specifies text that the user will see if the image is not loaded.
+
+Headings:
+    - Multiple heading levels for ... Headings
+    - Ex: <h1></h1>, <h2></h2>, ... , <h6></h6>
+
+Paragraphs: 
+    - For paragraphs of text
+    - Ex: <p></p>
+
+Lists:
+    - Ordered Lists
+        - Creates a list where bullets are ordered in cascading order.
+        - Uses the <ol></ol> Tag
+        - Contains <li></li> Tags for each list item.
+    - Unordered Lists
+        - Creates an un-ordered list of elements.
+        - Uses the <ul></ul> Tag
+        - Contains <li></li> Tags for each list item.
+    - List Items
+        - Contain content to be displayed on screen
+        - Ex: <li></li>
+
+Links: 
+    - Contains Content that is wrapped in "a" tags as well as reference to some web address.
+    - href: Attribute used to reference a web address within a tags.
+    - Ex: <a href = "http://lol.com"> lol.com </a>
+
+
+
