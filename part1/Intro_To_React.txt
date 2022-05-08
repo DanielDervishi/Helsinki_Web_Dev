@@ -1,0 +1,93 @@
+Creating a react application (Using npm tool; version >= 5.3):
+    >>> npx create-react-app <file_name>
+    >>> cd <file_name>
+    >>> npm start
+
+Setting Up React Environment:
+    - Read: https://fullstackopen.com/en/part1/introduction_to_react
+
+Component:
+
+    IMPORTANT: A REACT COMPONENT'S PROPS MUST NEVER BE MUTATED BY THAT COMPONENT. 
+    IMPORTANT: A REACT COMPONENT'S NAME MUST BEGIN WITH A CAPITAL LETTER.
+
+    - Lets you split UI into independent, reusable pieces and allows you to think of each piece in isolation.
+    - Like javascript functions that accept inputs and return react elements describing what should appear on the screen.
+    
+    Function Definition:
+        - can take in props and returns a react element. Ex:
+
+        function Welcome(props){
+            return <h1>Hello, {props.name}</h1>;
+        }
+    
+    Class Definition:
+        - props can also be defined as ES6 classes. Ex:
+
+        class Welcome extends React.Component{
+            render(){
+                return <h1>Hello, {this.props.name}</h1>;
+            }
+        }
+    
+    Rendering a Component:
+    Example Code:
+
+    function Welcome(props) {
+        return <h1>Hello, {props.name}</h1>;
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    const element = <Welcome name="Sara" />;
+    root.render(element);
+
+    Procedure behind the scenes: 
+        - root.render() is called with the argument <Welcome name="Sara" />.
+        - React calls the Welcome component with {name: 'Sara'} as the props object.
+        - The Welcome component returns <h1>Hello, Sara</h1>
+        - React DOM updates the DOM.
+
+    Composing Components:
+        - React Components can be composed with other react components.
+    
+    Using Components:
+        - To use a component, you must use the following syntax: <<Component_Name> />
+
+
+
+JSX
+    - Although it seems we are returning HTML markup, react actually uses JSX which is compiled into javascript.
+    - This compiling is done with Babel.
+    - Every opening tag must be closed.
+    - Dynamic content can be embedded within jsx by using curly braces. Ex:
+    const App = () =>{
+    var date = new Date()
+    return (
+        <div>
+            It is {date.toString()}
+        </div>
+    )
+    }
+
+Props:
+    - Object containing mapping of user defined props to their given values. Ex: <Hello name = "Maya" age = {26 + 10} />, this.props.name = "Maya" when executing the Hello function.
+
+Fragments:
+    - To aviod needing a root element each time we want to define a component rendering multiple non-nested components, we can wrap the elements to be returned by the component with an empty element called fragments. Ex:
+    
+    const App = () => {
+    const name = 'Peter'
+    const age = 10
+
+    return (
+        <>
+            <h1>Greetings</h1>
+            <Hello name="Maya" age={26 + 10} />
+            <Hello name={name} age={age} />
+            <Footer />
+        </>
+    )
+}
+
+
+
