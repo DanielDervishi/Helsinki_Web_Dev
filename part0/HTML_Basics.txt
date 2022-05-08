@@ -18,6 +18,7 @@ Empty Elements:
 Anatomy of an HTML document:
     - <!DOCTYPE html> - Used to make sure your document is syntactically and semantically correct? (They didn't expand much).
     - <html></html> - the html element. (root element)
+    - <head></head> - head of the file.
     - <meta charset="utf-8"> - Explains the character set that your file will use to operate with (Embedded within the head).
     - <title></title> - Sets the title of the webpage - a.k.a. the text that distinguishes tabs on the top of your chrome browser (Embedded within the head). 
     - <body></body> - Contains all content that users will see on the page.

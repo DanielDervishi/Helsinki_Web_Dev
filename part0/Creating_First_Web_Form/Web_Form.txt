@@ -1,0 +1,24 @@
+What is a web form:
+    - One of the primary forms of interaction between a user and a web page.
+
+Relevant HTML elements:
+    - <form>, <label>, <input>, <textarea>, and <button>
+
+The <form> Element:
+    - All forms start with a <form> element. Ex: <form action="/my-handling-form-page" method = "post"></form>
+
+Important Attributes of a Form:
+    - action: Defines the URL where the form's collected data should be sent when submitted.
+    - method: Defines which HTTP method to use when sending the data to a URL (Ex: post and get)
+
+<label>, <input>, and <textarea> elements
+    - a <label> element should be associated with each input. This can be done by setting the for attribute of the label to the id of the input.
+    - The type attribute of the input defines the type of input that the element will take on.
+    - <textarea> is a non empty element, therefore it has closing tags and the default value is set within the opening and closing tags. Ex:
+    <textarea>
+    by default this element is filled with this text
+    </textarea>
+    - When using input, to set a default value, you set the value attribute to the default value you would like. Ex: <input type="text" value="by default this element is filled with this text">
+
+<button>
+    - 
