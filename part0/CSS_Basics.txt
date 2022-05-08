@@ -1,0 +1,47 @@
+To inject CSS into your HTML:
+    - Between the head tags, write <link href = "styles/style.css" rel = "stylesheet">
+
+Anatomy of CSS Ruleset:
+    - Selector: HTML element name that will be styled. Ex: p
+    - Declaration: Single rule about one of the properties of an HTML element. Ex: color: red;
+    - Properties: Ways in which you can change html element. Ex: color
+    - Property Value: Chooses the value of the property. Ex: for the property color, the property value could be red.
+
+    Necessary Conditions For Use:
+        - Rulset must be wrapped in curly brackets
+        - Each declaration must use a colon to separate property from value
+        - With each declaration, you must use a semicolon at the end to separate it from the next one.
+
+Selecting Multiple Elements:
+    - Simply list them and then provide the ruleset. Ex: p, li, h1 {
+                                                                        color: red
+                                                                }
+
+Different Types of Selectors:
+    - Element Selector: Selects all HTML elments of a specified type | Ex: p selects <p>
+    - ID Selector (EACH ID VALUE ON A GIVEN HTML PAGE SHOULD BE UNIQUE): The element on the page with the specified id | #my-id selects <p id = "my-id:></p>
+    - Class Selector: Elements on the page with a specified class | Ex: .my-class
+    - Attribute Selector: Elements on the page with the specified attribute | Ex: img[src] selects <img src = "myimage.png"> but not img
+    - Pseudo-Class Selector: Elements with a certain state | Ex: a:hover selects <a> when a mouse pointer is hovering over it
+
+Fonts and Text:
+
+    How to add a new font to your application:
+    - To add a font to your css file, you must first add a <link> element within the <head> element of your HTML file. 
+    - Ex: <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    Properties of fonts:
+    - font-size, font-family
+
+Box Model of HTML elements:
+    
+    Intuition:
+        - We can think of HTML elements as boxes placed on top of one another
+
+    Properties:
+        NOTE (when setting a property like padding, 1 value sets the top, bottom, left and right padding.
+        NOTE-continued 2 values set the top-bottom and then left-right padding and 4 sets all of them individuall)
+        - Each box (HTML element) has the following properties
+        - Padding: Space around the content
+        - Border: Surrounds the padding
+        - Margin: Space around the outside of the border (usually space between one box and another)
