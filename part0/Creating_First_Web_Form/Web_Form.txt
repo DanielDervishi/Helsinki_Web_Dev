@@ -21,4 +21,10 @@ Important Attributes of a Form:
     - When using input, to set a default value, you set the value attribute to the default value you would like. Ex: <input type="text" value="by default this element is filled with this text">
 
 <button>
-    - 
+    - Ex: <button type="submit">Send your message</button>
+
+    Attributes:
+        - type
+            Values:
+                - submit: sends the form's data to the web page defined by the action attribute on the <form> elment.
+                - button: does nothing.
