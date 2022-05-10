@@ -24,8 +24,9 @@ Hooks/Stateful Component:
         - When setCount is called, react re-renders the state with the new value of count passed through.
 
 Event Handling:
+    - Event handlers are functions or function references.
     - The click mouse event is supported.
     - To associate a function with an event, we add an attribute which refrences this function.
-    
+
     
 
