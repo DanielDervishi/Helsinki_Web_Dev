@@ -1,0 +1,66 @@
+Intro:
+    - We are using the latest version of javascript.
+    - Some browsers don't support newer versions of JS, so the code is transpiled from a newr version to a compatible version of JS.
+    - Babel Takes care of the transpilation.
+    - Node does not need to be transpiled
+
+    Node:
+        - run by entering the command "node <file_name>" on js files.
+
+    Javascript Variables:
+        - The language is dynamically typed
+        - const is just a constant
+        - let defines a standard variable
+        - var: function scope. Varaible declarations are hoisted to top of function.
+        - let: block scope
+        - const: Can be mutated but can't be reassigned. Block scope
+
+    forEach:
+        - iterates through an array and applies a function with each of the elements as parameters. Ex: t = [1,2,3]
+        t.forEach(value () => {
+            console.log(value)
+        })
+    
+    concat:
+        - It is preferable to use concat to push, where we return a new array with the element appended to it instead of mutating the old array.
+        - Ex: 
+
+    map:
+        - creates a new array based off an old array.
+        - Ex: const t = [1,2,3]
+        const m1 = t.map(value => value * 2) //m1 = [2, 4, 6]
+    
+    Destructing Assignment:
+        - Used for assigning individual items of an array to some variables.
+        - Ex: const t = [1,2,3,4,5]
+        const [first, second, ...rest] = t // first = 1, second = 2, rest = [3,4,5]
+
+    Objects:
+        - Object Literals are litterally just mappings
+    
+    Extending Arrow Functions:
+        - standard definition: const <variable_name> = (<args>) => {}
+        - if the function uses a single parameter, the parentheses can be removed Ex: const <variable_name> = <arg> => {}
+        - if the function contains a single expression, braces are not needed: Ex: const square = p => p * p
+
+    Object methods and "this":
+        - Arrow functions and functions defined using the function keyword behave differently when using "this"
+        - Functions can be set as properties of objects; this is true even after initial declarations.
+        - When assigning an object method to a variable and using this reference to call a method, there is no way for JS to know what "this" is anymore. Ex: 
+        const arto = {
+        name: 'Arto Hellas',
+        greet: function() {
+            console.log('hello, my name is ' + this.name)
+            },
+        }
+
+        setTimeout(arto.greet, 1000)
+
+        - We can avoid this by instead writing setTimeout(arto.greet.bind(arto)) which creates a new function where "this" is bound to the arto object.
+        - Arrow functions should not be used as methods for objects because "this" does not work.
+    
+    Classes:
+        - Similar syntax to classes in other languages, but is based on "prototypal inheritance", whatever that is.
+
+Further Reading:
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript

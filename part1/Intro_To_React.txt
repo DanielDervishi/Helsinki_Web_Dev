@@ -22,7 +22,7 @@ Component:
         }
     
     Class Definition:
-        - props can also be defined as ES6 classes. Ex:
+        - components can also be defined as ES6 classes. Ex:
 
         class Welcome extends React.Component{
             render(){
