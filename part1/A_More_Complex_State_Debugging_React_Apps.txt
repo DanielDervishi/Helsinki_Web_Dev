@@ -1,3 +1,45 @@
 Complex State:
     NOTE: WHEN UPDATING A STATE OBJECT IT IS FORBIDDENT TO MUTATE THE OBJECT AND PASS IT BACK IN. EVEN OBJECTS ARE UNCHANGED FROM THE PREVIOUS STATE, THEY NEED TO BE COPIED INTO A NEW OBJECT.
     - If we create a clicks object and want to create a copy with a single attribute changed, we can do the following: newClicks = {...clicks, right: right.clicks + 1}
+
+Handling Arrays:
+    - Pushing to an array can be done witih Array.concat
+
+Console logging and debugging:
+    - To concatenate objects while logging, separate the objects by commas rather than by pluses. Ex: Don't do: console.log('a' + 'b'), but rather console.log('a','b')
+    - Write debugger anywhere in your code to pause execution. From here you can use the console tab in the chrome dev tools to inspect the states of variables.
+    - You can also add breakpoints in the Sources tab and inspect the state of variables under the scope sub-tab.
+    - The react developer tools extention provides a tab with info on Components, their props, states etc.
+
+Rules of Hooks:
+    - useState and useEffect must not be called from inside of a loop, a conditional or anywhere that is not a function defining a component.
+    const App = () => {
+  // these are ok
+  const [age, setAge] = useState(0)
+  const [name, setName] = useState('Juha Tauriainen')
+
+  if ( age > 10 ) {
+    // this does not work!
+    const [foobar, setFoobar] = useState(null)
+  }
+
+  for ( let i = 0; i < age; i++ ) {
+    // also this is not good
+    const [rightWay, setRightWay] = useState(false)
+  }
+
+  const notGood = () => {
+    // and this is also illegal
+    const [x, setX] = useState(-1000)
+  }
+
+  return (
+    //...
+  )
+}
+
+Functions returning Functions:
+    - Sometimes when handling events, we set the onClick property of an element to a function call which returns a reference to another function. (Note: I have no clue when this would be the case)
+
+Further Reading:
+    - https://egghead.io/courses/react-with-class-components-fundamentals-4351f8bb
