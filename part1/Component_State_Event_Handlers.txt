@@ -1,0 +1,39 @@
+Component Helpers:
+    - In javascript it is not uncommon to find helper functions nested within components.
+
+Destruction: 
+    - In JS, to easily extract props into variables we can use destruction to assign these variables.
+    - Ex: const { name, age } = props
+    - Further, we can use destruction when defining the parameters of a function.
+    - Ex: const Hello = ({ name, age }) => {}
+
+Page re-rendering:
+    - re-rendering to the root. Ex: ReactDOM.createRoot(document.getElementById('root')).render(<App counter={counter} />) 
+    or just root.render(<App counter={counter} />) if root is already defined.
+
+Hooks/Stateful Component:
+    - first we begin by importing useState from React. Ex: import {useState} from 'react'.
+    - Lets you 'hook into' React features.
+
+    useState:
+        - useState is a hook that lets you add React state to stateless components.
+        - Declares a state variable. Preserved by react after the function calls.
+        - The argument for useState is the initial value for the state. If you need multiple state values, useState must be called multiple times with a single argument each time.
+        - useState returns the current value of the state and a function that updates it
+        - Ex: const [count, setCount] = useState(0);
+        - When setCount is called, react re-renders the state with the new value of count passed through.
+
+Event Handling:
+    - Event handlers are functions or function references.
+    - The click mouse event is supported.
+    - To associate a function with an event, we add an attribute which refrences this function.
+    - Alternitively the function can be defined directly in the attribute assignment of the button element.
+
+Passing State to Child components:
+    - We want to lift up shared states to the closest common ancestor
+    - In their example, 3 buttons and a label share the same counter state, and thus the state should be in the app component as it is their closest common ancestor.
+
+Refactoring Components:
+    - Destructuring and arrow functions should be levreged wherever possible to refactor components.
+    
+
