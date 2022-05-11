@@ -27,6 +27,13 @@ Event Handling:
     - Event handlers are functions or function references.
     - The click mouse event is supported.
     - To associate a function with an event, we add an attribute which refrences this function.
+    - Alternitively the function can be defined directly in the attribute assignment of the button element.
 
+Passing State to Child components:
+    - We want to lift up shared states to the closest common ancestor
+    - In their example, 3 buttons and a label share the same counter state, and thus the state should be in the app component as it is their closest common ancestor.
+
+Refactoring Components:
+    - Destructuring and arrow functions should be levreged wherever possible to refactor components.
     
 
