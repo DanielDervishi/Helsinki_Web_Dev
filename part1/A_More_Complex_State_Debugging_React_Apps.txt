@@ -1,0 +1,3 @@
+Complex State:
+    NOTE: WHEN UPDATING A STATE OBJECT IT IS FORBIDDENT TO MUTATE THE OBJECT AND PASS IT BACK IN. EVEN OBJECTS ARE UNCHANGED FROM THE PREVIOUS STATE, THEY NEED TO BE COPIED INTO A NEW OBJECT.
+    - If we create a clicks object and want to create a copy with a single attribute changed, we can do the following: newClicks = {...clicks, right: right.clicks + 1}
