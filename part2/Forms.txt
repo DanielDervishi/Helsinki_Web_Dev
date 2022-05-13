@@ -1,0 +1,27 @@
+Creating a Form:
+    - Example Form:
+        <form onSubmit={addNote}>
+            <input />
+            <button type="submit">save</button>
+        </form>
+        - The onSubmit attribute defines the event handler that is executed once the button is pressed.
+
+Event Handlers:
+    - Ex: const addNote = (event) => {
+            event.preventDefault()
+            console.log('button clicked', event.target)
+            }
+    - The event parameter calls the event.preventDefault() method from submitting a form which would cause the page to reload
+    - Event.target is the form defined in the creating a form section
+
+Controlled Components:
+    - When we update a component, react checks the difference between the current state of the component and the new one and updates the component.
+    - Since react doesn't observe the dom, we need something to detect a state change and tell react about that state change. We can use the onChange attribute for an input to tell us when there has been a change to the input and save that in some react state and re-render the component.
+
+Conditional Operator:
+    - Ex: const result = condition ? val1 : val2
+    - Essentially, if a condition is true, result gets set to val1, otherwise it gets set to val2
+
+Filtering
+    - Ex: notes.filter(note => note.important === true).
+    
