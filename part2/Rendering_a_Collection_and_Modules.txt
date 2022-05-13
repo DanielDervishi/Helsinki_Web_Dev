@@ -1,0 +1,17 @@
+Rendering An Array:
+    - When rendering an array, the map method can be used with jsx to create an array or react elements. Ex: notes.map(note => <li>note.content</li>)
+    - This will cause a key-attribute error.
+    - We must add a key which react uses for faster rendering of lists. For example, without specifying a key and adding a new element to the top of the list, react will need to re-render every component that comes after it whenever the list is mutated. With a key however, react doesn't need to go through all that work, since it just has to move components with a key and render the new component.
+    - If we created a component for each note item, the key attribute would instead have to be on the note element.
+
+Map Method:
+    - map always creates a new array where each element was created from the original array with using the function passed in as an argument.
+
+Refactoring Modules:
+    - Common practice is to create a new file for each react component. Name the file after the component.
+    - When importing a file, writing a ., before the rest of the path refers to the current directory. Ex: './components/Note'
+
+When the Application Breaks:
+    - First console.log is worth putting before the app renders
+    - Some common errors include that props are expected to be a different type, or called with a different name then they are - destructing fails in this case.
+    
