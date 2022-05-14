@@ -1,0 +1,59 @@
+JSON server
+    - Library meant to mimic a server, where data is stored as a JSON file.
+    - create db.json in the root directory of your project
+    - fill it with JSON data
+    - Type the command npx json-server --port 3001 --watch db.json while in the root directory to start the fake server on port 3001
+
+The Browser as a Runtime Environment:
+    - JavaScript engines follow the asynchronous model, meaning all IO has to be non-blocking a.k.a. there should never be a point where we wait for a user or for a server to respond.
+    - When an asynchronous operation is completed, the JS engine calls all the event handlers registered to an operation.
+    - Since JS engines are single-threaded, they can't execute code in parallel, meaning each time we encounter code that is blocking, the whole program would freeze.
+    - There should be no blocking code or code that has timeouts and whatnot since it would stop the whole application from continuing execution.
+
+npm:
+    - "npm install <library>" adds the name of the library to the package.json files which outlines the dependencies of the program and downloads the libraries code under node_modules.
+    - We can also have development dependencies. Ex: npm install json-server --save-dev
+    - We can add a command under scripts in the package.json file to make some aspects of using npm easier. Ex: we added "server": "json-server -p3001 --watch db.json" so that instead of the long sequence of characters we had to enter to innitialize our fake server, now we just have to write npm run server.
+
+Axios:
+    - import axios form 'axios'
+    - library for get and fetch requests
+
+Promise:
+    - object returned by Axios' get method.
+    - Definition: An object representing the eventual completion or failure of an asynchronous operation
+
+    States of a Promise:
+        - Pending
+        - Fufilled/Resolved
+        - Rejected: an error prevented the final value from being determined.
+
+    - If we wish to do anything with this promise (like get the data returned from the address), we can do this using the then method paired with an event handler. Ex: 
+    const promise = axios.get('http://localhost:3001/notes')
+
+    promise.then(response => {
+        console.log(response)
+    })
+
+    - The JS runtime environment calls the callback function defined within the then method and provides the response as a parameter.
+    - response contains data related to an HTTP GET request, which includes returned data, status code, and headers.
+    - More Common Syntax: axios.get('http://localhost:3001/notes').then(response => {
+        const notes = response.data
+        console.log(notes)
+        })
+    - JSON data returned by the server is simply a one line string.
+    - axios parses the data automatically.
+
+Effect-hooks:
+    - Allows you to perform side effects on functon components. Ex: Data fetching, setting up a subscription.
+    - when use effect is defined within a component function, the following happens
+    - Component renders without any code that would be fetched from the server being present
+    - The browser calls the effect function if a promise is fulfilled and the callback function that we have defined is called.
+    - By default, effects run after every completed render, but you can choose to fire it only when certain values have changed.
+    - The first parameter of useEffect is the callback function and the second parameter denotes the number of times the function should execute. if the second parameter is an empty array, that means the effect is only run along with the first render.
+
+The development runtime environment
+    - The JS code from the react application is run in the browser.
+    - The browser gets this code from the React dev server which is created after running the command npm start
+    - React dev server changes JS to a format understood by the browser.
+    - We query data from the json-server running on port 3001 on our machine.
