@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Filter from './Components/Filter'
 import PersonForm from './Components/PersonForm'
 import Persons from './Components/Persons'
+import axios from 'axios'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: "12-4324-23424" }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchPrefix, setSearchPrefix] = useState('')
+
   const nameInList = () => {
     for (let i = 0; i < persons.length; i++) {
       if (persons[i].name === newName) {
@@ -18,6 +18,7 @@ const App = () => {
     }
     return false
   }
+
   const updateForm = (event) => {
     event.preventDefault();
     if (!nameInList()) {
@@ -28,10 +29,15 @@ const App = () => {
       alert(`${newName} is already added to phonebook`)
     }
   }
+
   const createListItemsArray = () => {
     return (persons.filter(person => person.name.toLowerCase().startsWith(searchPrefix.toLowerCase())).map(person => <li key={person.name}>{person.name} {person.number}</li>))
   }
 
+  const effectCallback = () => {
+    axios.get('http://localhost:3001/persons').then(promise => { setPersons(promise.data) })
+  }
+  useEffect(effectCallback, [])
 
   return (
     <div>

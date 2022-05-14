@@ -49,6 +49,7 @@ Effect-hooks:
     - when use effect is defined within a component function, the following happens
     - Component renders without any code that would be fetched from the server being present
     - The browser calls the effect function if a promise is fulfilled and the callback function that we have defined is called.
+    
     - By default, effects run after every completed render, but you can choose to fire it only when certain values have changed.
     - The first parameter of useEffect is the callback function and the second parameter denotes the number of times the function should execute. if the second parameter is an empty array, that means the effect is only run along with the first render.
 
