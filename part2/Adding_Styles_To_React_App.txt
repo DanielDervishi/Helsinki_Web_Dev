@@ -1,0 +1,2 @@
+Adding Styles to a react App
+    To target a react class with CSS, we must first assign the className attribute for each html element rendered with react that we want to style.

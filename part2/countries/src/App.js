@@ -9,12 +9,22 @@ function App() {
   const [searchCountry, setSearchCountry] = useState('')
   const [countries, setCountries] = useState([])
   const [searchPrefixCountries, setSearchPrefixCountries] = useState([])
+  const [clickedShow, setClickedShow] = useState(false)
+
+  const clickHandler = (id) => {
+    setClickedShow(true)
+    setSearchPrefixCountries(searchPrefixCountries.filter(country => country.name.official === id))
+  }
 
   const handleDisplay = () => {
     if ((1 < searchPrefixCountries.length && searchPrefixCountries.length <= 10) || searchPrefixCountries.length === 0) {
-      return (
-        <CountriesList countriesList={searchPrefixCountries} />
-      )
+      if (clickedShow === false) {
+        return (
+          <CountriesList countriesList={searchPrefixCountries} clickHandler={clickHandler} />
+        )
+      } else {
+        return (<CountriesInfo countriesList={searchPrefixCountries} formatList={formatLanguages} />)
+      }
     } else if (searchPrefixCountries.length === 1) {
       return (
         <CountriesInfo countriesList={searchPrefixCountries} formatList={formatLanguages} />
@@ -42,6 +52,7 @@ function App() {
         find countries <input value={searchCountry} onChange={(event) => {
           setSearchCountry(event.target.value);
           setSearchPrefixCountries(countries.filter(country => country.name.common.toLowerCase().startsWith(event.target.value.toLowerCase())));
+          setClickedShow(false)
         }} />
       </div>
       <div>
