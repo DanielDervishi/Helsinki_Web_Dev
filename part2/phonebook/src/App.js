@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Filter from './Components/Filter'
 import PersonForm from './Components/PersonForm'
 import Persons from './Components/Persons'
-import axios from 'axios'
+import { addPersonToServer, getData, deletePersonBackend, updateNumberBackend } from './BackendCommunication'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -18,25 +18,47 @@ const App = () => {
     }
     return false
   }
+  const updateNumber = (name, number) => {
+    updateNumberBackend(name, { name: name, number: number, id: name })
+    replacePerson(name, number)
+  }
 
+  const replacePerson = (name, number) => {
+    const newPersons = persons.filter(person => person.name != name)
+    newPersons.push({ name: name, number: number, id: name })
+    setPersons(newPersons)
+  }
   const updateForm = (event) => {
     event.preventDefault();
     if (!nameInList()) {
-      setPersons(persons.concat({ name: newName, number: newNumber }))
-      setNewName('')
-      setNewNumber('')
+      if (!(newName.trim() === '')) {
+        console.log(nameInList(), newName.trim() === '')
+        addPersonToServer(setPersons, setNewName, setNewNumber, persons, { name: newName, number: newNumber, id: newName })
+      }
     } else {
-      alert(`${newName} is already added to phonebook`)
+      if (window.confirm(newName + " already exists in the phonebook. Replace number?")) {
+        updateNumber(newName, newNumber)
+      }
+    }
+  }
+
+  const deletePerson = (id) => {
+    if (window.confirm("Are you sure?")) {
+      deletePersonBackend(id)
+      const newPersons = persons.filter(person => person.id != id)
+      setPersons(newPersons)
     }
   }
 
   const createListItemsArray = () => {
-    return (persons.filter(person => person.name.toLowerCase().startsWith(searchPrefix.toLowerCase())).map(person => <li key={person.name}>{person.name} {person.number}</li>))
+    return (persons.filter(person => person.name.toLowerCase().startsWith(searchPrefix.toLowerCase())).map(person =>
+      <li key={person.name + person.number}>{person.name} {person.number}
+        <input type="button" onClick={() => deletePerson(person.name)} value="delete" />
+      </li>
+    ))
   }
 
-  const effectCallback = () => {
-    axios.get('http://localhost:3001/persons').then(promise => { setPersons(promise.data) })
-  }
+  const effectCallback = () => { getData(setPersons) }
   useEffect(effectCallback, [])
 
   return (

@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import CountriesList from './components/CountriesList'
+import CountriesInfo from './components/CountryInfo'
 
 
 function App() {
@@ -11,26 +13,13 @@ function App() {
   const handleDisplay = () => {
     if ((1 < searchPrefixCountries.length && searchPrefixCountries.length <= 10) || searchPrefixCountries.length === 0) {
       return (
-        <ul>
-          {searchPrefixCountries.map(country => <li key={country.name.official}>{country.name.common}</li>)}
-        </ul>
+        <CountriesList countriesList={searchPrefixCountries} />
       )
     } else if (searchPrefixCountries.length === 1) {
-      console.log('here1')
       return (
-        <div>
-          <h1>{searchPrefixCountries[0].name.common}</h1>
-          <div>capital {searchPrefixCountries[0].capital[0]}</div>
-          <div>area {searchPrefixCountries[0].area}</div>
-          <h3>languages</h3>
-          <ul>
-            {formatLanguages()}
-          </ul>
-
-        </div>
+        <CountriesInfo countriesList={searchPrefixCountries} formatList={formatLanguages} />
       )
     } else {
-      console.log('here2', countries, searchPrefixCountries)
       return (<div>Too many matches, specify another filter</div>)
     }
   }
@@ -43,9 +32,8 @@ function App() {
     let countriesOut = []
 
     for (const language in searchPrefixCountries[0].languages) {
-      countriesOut.push(<li key={searchPrefixCountries[0][language]}>{searchPrefixCountries[0].languages[language]}</li>)
+      countriesOut.push(<li key={searchPrefixCountries[0][language] + language}>{searchPrefixCountries[0].languages[language]}</li>)
     }
-
     return countriesOut
   }
   return (

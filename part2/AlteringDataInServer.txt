@@ -1,0 +1,18 @@
+Rest:
+    - Individual data objects are referred to as resources.
+    - Each resource has a unique URL associated with it.
+    - Creating a new resource for storing a note is done by making an HTTP POST request to the notes url (referring to notes app now).
+    - The request is sent to the notes URL according to the REST convention that the server adheres to.
+
+Sending data:
+    - json-server requires data to be sent in JSON format.
+    - when we make the request to the server, we let the server choose the id for the new note.
+    - Ex post:
+    axios
+    .post('http://localhost:3001/notes', noteObject)
+    .then(response => {
+      setNotes(notes.concat(response.data))
+      setNewNote('')
+    })
+    - The new note is returned by the backend server and we update the notes.
+
