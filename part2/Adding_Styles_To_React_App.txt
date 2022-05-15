@@ -1,2 +1,28 @@
 Adding Styles to a react App
-    To target a react class with CSS, we must first assign the className attribute for each html element rendered with react that we want to style.
+    - To target a react class with CSS, we must first assign the className attribute for each html element rendered with react that we want to style.
+    - To add inlinestyles, define the style as a javascript object where the property names are camel cased. Ex:
+    const footerStyle = {
+    color: 'green',
+    fontStyle: 'italic',
+    fontSize: 16
+  }
+  return (
+    <div style={footerStyle}>
+      <br />
+      <em>Note app, Department of Computer Science, University of Helsinki 2022</em>
+    </div>
+  )
+
+Creating a Custom Error Message:
+    - when a component returns null nothing is rendered.
+    Ex: const Notification = ({ message }) => {
+        if (message === null) {
+         return null
+        }
+
+        return (
+            <div className='error'>
+            {message}
+            </div>
+        )
+        }

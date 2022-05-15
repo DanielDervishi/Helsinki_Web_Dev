@@ -3,12 +3,14 @@ import Filter from './Components/Filter'
 import PersonForm from './Components/PersonForm'
 import Persons from './Components/Persons'
 import { addPersonToServer, getData, deletePersonBackend, updateNumberBackend } from './BackendCommunication'
+import Notification from './Components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchPrefix, setSearchPrefix] = useState('')
+  const [errorMessage, sestErrorMessage] = useState(null)
 
   const nameInList = () => {
     for (let i = 0; i < persons.length; i++) {
@@ -66,6 +68,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <Filter value={searchPrefix} onChange={(event) => setSearchPrefix(event.target.value)} />
       <PersonForm onSubmit={updateForm} valueName={newName} valueNumber={newNumber} onChangeName={(event) => setNewName(event.target.value)} onChangeNumber={(event) => setNewNumber(event.target.value)} />
+      <Notification message={errorMessage} />
       <h2>Numbers</h2>
       <Persons createListItemsArray={createListItemsArray} />
     </div>
