@@ -1,11 +1,11 @@
 import React from 'react'
 import '../styles.css'
-const Notification = ({ message }) => {
+const Notification = ({ message, className }) => {
     if (message === null) {
         return null
     } else {
         return (
-            <div className="error">
+            <div className={className}>
                 {message}
             </div>
         )

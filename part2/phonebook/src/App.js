@@ -10,7 +10,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchPrefix, setSearchPrefix] = useState('')
-  const [errorMessage, sestErrorMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [notificationClassName, setNotificationClassName] = useState("")
 
   const nameInList = () => {
     for (let i = 0; i < persons.length; i++) {
@@ -23,10 +24,15 @@ const App = () => {
   const updateNumber = (name, number) => {
     updateNumberBackend(name, { name: name, number: number, id: name })
     replacePerson(name, number)
+    setErrorMessage('Added ' + name)
+    setNotificationClassName("addedPerson")
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
   }
 
   const replacePerson = (name, number) => {
-    const newPersons = persons.filter(person => person.name != name)
+    const newPersons = persons.filter(person => person.name = name)
     newPersons.push({ name: name, number: number, id: name })
     setPersons(newPersons)
   }
@@ -36,6 +42,11 @@ const App = () => {
       if (!(newName.trim() === '')) {
         console.log(nameInList(), newName.trim() === '')
         addPersonToServer(setPersons, setNewName, setNewNumber, persons, { name: newName, number: newNumber, id: newName })
+        setErrorMessage('Added ' + newName)
+        setNotificationClassName("addedPerson")
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       }
     } else {
       if (window.confirm(newName + " already exists in the phonebook. Replace number?")) {
@@ -46,8 +57,8 @@ const App = () => {
 
   const deletePerson = (id) => {
     if (window.confirm("Are you sure?")) {
-      deletePersonBackend(id)
-      const newPersons = persons.filter(person => person.id != id)
+      deletePersonBackend(id, setErrorMessage, setNotificationClassName)
+      const newPersons = persons.filter(person => person.id !== id)
       setPersons(newPersons)
     }
   }
@@ -68,7 +79,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <Filter value={searchPrefix} onChange={(event) => setSearchPrefix(event.target.value)} />
       <PersonForm onSubmit={updateForm} valueName={newName} valueNumber={newNumber} onChangeName={(event) => setNewName(event.target.value)} onChangeNumber={(event) => setNewNumber(event.target.value)} />
-      <Notification message={errorMessage} />
+      <Notification message={errorMessage} className={notificationClassName} />
       <h2>Numbers</h2>
       <Persons createListItemsArray={createListItemsArray} />
     </div>
