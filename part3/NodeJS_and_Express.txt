@@ -1,0 +1,140 @@
+Node:
+    - We used npm to create a new package.json file, which I do not know the use of yet. Likely to run our backend code.
+
+Simple Web Server:
+    - (1) const http = require('http')
+
+    (2a) const app = http.createServer((request, response) => {
+    (2b)   response.writeHead(200, { 'Content-Type': 'text/plain' })
+    (2c)   response.end('Hello World')
+    (2d) })
+
+    (3) const PORT = 3001
+    (4) app.listen(PORT)
+    (5) console.log(`Server running on port ${PORT}`)
+
+    1. We require http which imports node's web server module (http module) in order to use the HTTP server and client.
+    2. the createServer method creates a new web server.
+    2a. This event handler is created and called each and every time an HTTP request is made to the server.
+    2b. The request is responded to with status code 200, with the Content-Type header set to text/plain
+    2c. The content of the site that is returned is just hello World
+
+Sending JSON data over a server:
+    - we must first convert raw data to a json file by using JSON.stringigy(<data>)
+
+Semantic Versioning:
+    - Ex: ^4.17.2
+    - Patch number: 2
+    - Minor number: 17
+    - Major Number: 4
+    - when a dependecy has a version in the form given by the example. The major number must be the same, but the minor and patch numbers can be greater than or equal to what is shown in the example.
+    - All versions would have to be backwards compatible, meaning that the code that was written for version 4.17.2 should still work in newer versions.
+
+Updating Dependencies on a project:
+    - type "npm update" into the console to update the node project.
+
+Web and Express:
+    - Now using express to create a web server. Ex:
+    
+    (1) const express = require('express')
+    (2) const app = express()
+
+    (3) let notes = [
+    ...
+    ]
+
+    (4) app.get('/', (request, response) => {
+    response.send('<h1>Hello World!</h1>')
+    })
+
+    (5) app.get('/api/notes', (request, response) => {
+    response.json(notes)
+    })
+
+    (6) const PORT = 3001
+    (7) app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+     })
+     1. We now require express which is a function that is used to create an express application
+     2. We call the express function and assign it to app
+     4. This defines a route that handles HTTP get requests from the application's '/' root. The parameters of the callback define the request which contains all info about the HTTP request and the response which defines how the server responds to the request. The send method of response sends the data and since a string was sent, '<h1>Hello World!</h1>', express automatically sets the value of Content-Type to text/html. The default status code response is 200.
+     5. This route handles the http get request made to '/api/notes'. The server responds with a json formatted string. Express auto sets the Content-Type header to application/json.
+    
+Nodemon:
+    - Library that automatically restarts the node server if any files are changed.
+    - To install it to the dev dependencies: npm install --save-dev nodemon.
+    - To start the application with nodemon: node_modules/.bin/nodemon index.js
+    - Create a node script for ease of use. Ex: "dev": "nodemon index.js". Note: node knows to search from the node_modules/.bin/ path, that's why we don't need to specify this when creating a node script.
+
+REST:
+    - Stands for Representational Stata Transfer.
+    - Architectural style for building scalable web applications.
+    - Singlular collections and sub-collections of data in REST are called resources. Each resource has an associated unique URL.
+    - Convention for URL's. Combine the name of the resource type with the resouce's unique identifier. Ex: root url is www.example.com/api. To access a note resource with id 10, it would have the address www.example.com/api/notes/10. The url for the collection of note is www.example.com/api/notes/.
+
+Route Parameters:
+    - Route parameters are segments of a url that allow us to refer to the value of these segments through the request's params attribute.
+    - Ex: Route path: /users/:userId/books/:bookId
+        Request URL: http://localhost:3000/users/34/books/8989
+        req.params: { "userId": "34", "bookId": "8989" }
+
+Fetching a single resource:
+    - We leverage Route Parameters to easily get a part of the URL.
+    - Ex: app.get('/api/note.:id', (request, response) => {
+        const id = Number(request.params.id)
+        const note = notes.find(note => note.id === id)
+        response.json(note)
+    })
+    - parameters are returned as strings
+    - in the example, if we request an id that has no data, status code 200 is sent back. Instead we want status code 404 to be sent back as there is no note at this id.
+    -   Updated Code: 
+        app.get('/api/notes/:id', (request, response) => {
+        const id = Number(request.params.id)
+        const note = notes.find(note => note.id === id)
+  
+        if (note) {
+            response.json(note)
+        } else {
+            response.status(404).end()
+        }
+        })
+    - The status method is used for sending a status back and the end method is used for sending a response without data.
+
+Deleting Resources:
+    - Ex: 
+    app.delete('/api/notes/:id', (request, response) => {
+    const id = Number(request.params.id)
+    notes = notes.filter(note => note.id !== id)
+
+    response.status(204).end()
+    })
+    - We return status code 204 whether the resource has been deleted or never existed in the first place.
+
+Postman:
+    - desktop application for easily sending requests to servers and visualizing results.
+
+Rest Client Plugin VSCode:
+    - just create a .rest file, and write down some request with the url of the request. Ex: GET http://localhost:3001/api/notes/1.
+    - Click the send request popup that appears just above that line of code.
+
+Receiving data:
+    - When we recieve the data, we recieve it as a json file in request body. To parse this data and get a JS object back, we must write the command app.use(express.json()) at the top of the file so app knows to parse any requests sending JSON data.
+    - Without the parser, the body property of the request is undefined. The parser parses the data of a request, changes it into a JS object and attaches it to the body property of the request object before the route handler is called.
+    - Sending data with VSCode rest extension: Ex: 
+    POST http://localhost:3001/api/notes/ HTTP/1.1
+    content-type: application/json
+
+    {
+        "name": "sample",
+        "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+    }
+    - Multiple requests can be put in the same file using '###' to seperate the requests. NOTE: DON'T LEAVE AN EMPTY LINE BETWEEN THE TOP OF A REQUEST AND THE REQUEST HEADER!! The REST client interprets this to mean the header has been left empty.
+
+Handling incorrect data sent through post requests:
+    - Just return status code 400 for bad request. Ex: return response.status(400).json({ 
+      error: 'content missing' 
+    })
+    - Routes should be early returned to prevent the rest of the code in the route from running and having unintended behaviour.
+
+Spread Syntax:
+    - An array can be split into its elements using the three dot syntax: Ex: Math.max(...notes.map(n => n.id))
