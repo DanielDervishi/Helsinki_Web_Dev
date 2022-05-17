@@ -20,7 +20,7 @@ Simple Web Server:
     2c. The content of the site that is returned is just hello World
 
 Sending JSON data over a server:
-    - we must first convert raw data to a json file by using JSON.stringigy(<data>)
+    - we must first convert raw data to a json file by using JSON.stringify(<data>)
 
 Semantic Versioning:
     - Ex: ^4.17.2
@@ -40,7 +40,7 @@ Web and Express:
     (2) const app = express()
 
     (3) let notes = [
-    ...
+        ...
     ]
 
     (4) app.get('/', (request, response) => {
