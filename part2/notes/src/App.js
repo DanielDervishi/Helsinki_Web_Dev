@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from './components/Note'
-const baseURL = 'http://localhost:3001/api/notes'
+const baseURL = '/api/notes'
 
 const App = () => {
   const [notes, setNotes] = useState([])

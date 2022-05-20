@@ -8,4 +8,16 @@ Using cors.
     - First install it within the project: npm i cors
     - import the node module using the require method. const cors = require('cors')
     - Use it as middlware by passing the cors method call into the app.use method.
-    
+
+Application to the internet:
+    - Go through setup detailed on the heroku documentation.
+    - Note: if you are not working on the main branch, instead of pushing directly to heroku as you would, do the following: git push heroku <branch name>:master.
+
+Frontend Production Build:
+    - To build a production version of the frontend, run the command npm run build.
+    - All code from all the dependencies and our js code will be minified into one file.
+
+Serving Static files from the backend:
+    - copy file from frontend repo to backend repo using this command: cp -r <folder_to_be_coppied> <directory_to_copy_into>
+    - Go back into the server and add more express middleware. In this case: app.use(express.static('build')) which checks the build directory for static files and returns those. HTTP requests to www.serversaddress.com/index.html or www.serversaddress.com will show the react front-end.
+    - Change address in the frontend to be relative instead of fixed just for flexibility depending on where code is deployed.
