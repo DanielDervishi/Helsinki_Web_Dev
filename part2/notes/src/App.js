@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from './components/Note'
+const baseURL = 'http://localhost:3001/api/notes'
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -9,7 +10,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/notes')
+      .get(baseURL)
       .then(response => {
         setNotes(response.data)
       })
@@ -25,7 +26,7 @@ const App = () => {
     }
 
     axios
-      .post('http://localhost:3001/notes', noteObject)
+      .post(baseURL, noteObject)
       .then(response => {
         setNotes(notes.concat(response.data))
         setNewNote('')

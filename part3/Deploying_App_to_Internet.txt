@@ -1,0 +1,11 @@
+Same Origin Policy and CORS
+    - Cross Origin Resource Sharing is a mechanism that allows sharing of resources accross origins. Ex: Images, Fonts, Scripts.
+    - By default, javascript code can only communicate with a server with the same origin.
+    - Origin: a 3-tuple containing protocol, port (if specified) and a host (for ex a server).
+    - In the notes project, since the frontend is on port 3000 and the backend on port 3001, they do not have the same origin.
+
+Using cors.
+    - First install it within the project: npm i cors
+    - import the node module using the require method. const cors = require('cors')
+    - Use it as middlware by passing the cors method call into the app.use method.
+    

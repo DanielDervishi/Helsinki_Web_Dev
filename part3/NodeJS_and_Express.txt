@@ -153,3 +153,12 @@ MiddleWare:
     - middleware are updated one by one in the order they are defined.
     - if we define our own middleware, we can use the middleware with express by writing app.use(<middlware>) at the top of the file.
     - middlware can be used before or after a request.
+
+Application to the Internet:
+    - We will use Heroku for this
+
+    Defining a Procfile:
+        - Ex Content: web: npm start
+        - a procfile declares which command should be run before starting the application
+        - defines a single process type.
+        - web declares that the process will be attatched to the HTTP routing stack of heroku which recieves traffic when deployed.
