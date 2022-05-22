@@ -1,10 +1,11 @@
 const express = require('express')
 const morgan = require('morgan')
-
+const cors = require('cors')
 const app = express()
 
 morgan.token('body', (req, res) => { return JSON.stringify(req.body) })
 
+app.use(cors())
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
@@ -56,8 +57,10 @@ app.get('/api/persons/:id', (request, response) => {
     }
 })
 app.delete('/api/persons/:id', (request, response) => {
+    console.log(request.params.id)
     const id = Number(request.params.id)
     persons = persons.filter(person => person.id !== id)
+    console.log(persons)
     response.status(202).end()
 })
 app.post('/api/persons', (request, response) => {
@@ -70,7 +73,7 @@ app.post('/api/persons', (request, response) => {
     }
     const newPerson = { id: id, name: name, number: request.body.number }
     persons.push(newPerson)
-    response.status(200).send('Data has been added to the server')
+    response.status(200).send({ 'person': newPerson, 'msg': 'Data has been added to the server' })
 })
 
 

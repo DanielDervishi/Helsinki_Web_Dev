@@ -21,3 +21,19 @@ Serving Static files from the backend:
     - copy file from frontend repo to backend repo using this command: cp -r <folder_to_be_coppied> <directory_to_copy_into>
     - Go back into the server and add more express middleware. In this case: app.use(express.static('build')) which checks the build directory for static files and returns those. HTTP requests to www.serversaddress.com/index.html or www.serversaddress.com will show the react front-end.
     - Change address in the frontend to be relative instead of fixed just for flexibility depending on where code is deployed.
+
+Utilizing Node Scripts:
+    - You can use nodes scripts to streamline deployment and building.
+    - Ex Scripts from notes app:
+        "build:ui": "rm -rf build && cd ../part2-notes/ && npm run build && cp -r build ../notes-backend",
+        "deploy": "git push heroku main",
+        "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",    
+        "logs:prod": "heroku logs --tail"
+
+Static Asset:
+    - A file that is not directly associated with a web page or application.
+
+Proxy:
+    - React acts as a proxy in the case where we want to fetch a non-static asset. Setting up a proxy first allows react to check if a request is made for a static asset and if not, request from the user defined server.
+    - In the package.json file, we add the following line: "proxy": "http://localhost:3001"
+

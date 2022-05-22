@@ -22,7 +22,7 @@ const App = () => {
     return false
   }
   const updateNumber = (name, number) => {
-    updateNumberBackend(name, { name: name, number: number, id: name })
+    updateNumberBackend({ name: name, number: number, id: name })
     replacePerson(name, number)
     setErrorMessage('Added ' + name)
     setNotificationClassName("addedPerson")
@@ -58,15 +58,18 @@ const App = () => {
   const deletePerson = (id) => {
     if (window.confirm("Are you sure?")) {
       deletePersonBackend(id, setErrorMessage, setNotificationClassName)
+      console.log("here", persons.map(person => [person.id, id]))
       const newPersons = persons.filter(person => person.id !== id)
+      console.log(persons.filter(person => person.id !== id))
       setPersons(newPersons)
     }
   }
 
   const createListItemsArray = () => {
+    console.log(persons)
     return (persons.filter(person => person.name.toLowerCase().startsWith(searchPrefix.toLowerCase())).map(person =>
       <li key={person.name + person.number}>{person.name} {person.number}
-        <input type="button" onClick={() => deletePerson(person.name)} value="delete" />
+        <input type="button" onClick={() => deletePerson(person.id)} value="delete" />
       </li>
     ))
   }
