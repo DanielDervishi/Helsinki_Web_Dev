@@ -1,0 +1,10 @@
+Debugging Node Apps:
+    Chrome Dev Tools:
+        - Started by entering node --inspect index.js in the terminal.
+        - From here, we can inspect page and click on the node icon in the top left.
+        - Provides info on data present in the server
+    
+    MongoDB:
+        - document database
+        - Stores data in collections and documents
+        - Collections are like an array of these documents which resemble js objects.
