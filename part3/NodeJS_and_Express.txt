@@ -67,7 +67,7 @@ Nodemon:
     - Create a node script for ease of use. Ex: "dev": "nodemon index.js". Note: node knows to search from the node_modules/.bin/ path, that's why we don't need to specify this when creating a node script.
 
 REST:
-    - Stands for Representational Stata Transfer.
+    - Stands for Representational State Transfer.
     - Architectural style for building scalable web applications.
     - Singlular collections and sub-collections of data in REST are called resources. Each resource has an associated unique URL.
     - Convention for URL's. Combine the name of the resource type with the resouce's unique identifier. Ex: root url is www.example.com/api. To access a note resource with id 10, it would have the address www.example.com/api/notes/10. The url for the collection of note is www.example.com/api/notes/.
