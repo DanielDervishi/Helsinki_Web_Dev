@@ -1,16 +1,16 @@
-GET http://localhost:3001/api/persons
+GET https://daniel-dervishi-phonebook.herokuapp.com/api/persons
 
 ###
 
-GET http://localhost:3001/api/persons/2
+GET https://daniel-dervishi-phonebook.herokuapp.com/api/persons/2
 
 
 ###
-DELETE http://localhost:3001/api/persons/759676196.2200814
+DELETE https://daniel-dervishi-phonebook.herokuapp.com/759676196.2200814
 
 
 ###
-POST http://localhost:3001/api/persons
+POST https://daniel-dervishi-phonebook.herokuapp.com/api/persons
 Content-Type: application/json
 
 {
