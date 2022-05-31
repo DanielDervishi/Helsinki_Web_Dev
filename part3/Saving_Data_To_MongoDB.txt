@@ -8,3 +8,31 @@ Debugging Node Apps:
         - document database
         - Stores data in collections and documents
         - Collections are like an array of these documents which resemble js objects.
+        - Use MongoDB Atlas
+        - Steps to be followed can be found here in the MongoDB Section: https://fullstackopen.com/en/part3/saving_data_to_mongo_db
+        - Mongoose is an object to mongo document mapper.
+        - if you made a password with special characters, it need be url encoded.
+        - process.args is an array which keeps track of command line entries, where the second index is the file name and other indicies are other space-seperated entries.
+        - MongoDB atlas auto creates a new database if one tries to connect to a database that does not yet exist.
+        - Structure of objects does not matter in a mongo database.
+    
+    Schema:
+        - defines shape of documents within a collection
+        - creating a model is essentailly creating a constructor function for documents. Ex: mongoose.model('Note', noteSchema). Essentially, the first parameter defines the name of the collection which will be the lowercase plural "notes" and the second is the schema which defines the document structure.
+        - outline for documents in a collection are defined through schema at the application level to provide structure to the data within collections.
+    
+    Creating and Saving Objects:
+        - creating objects is as easy as defining a new js object like so: 
+        const note = new Note({
+        content: 'HTML is Easy',
+        date: new Date(),
+        important: false,
+        })
+        - Note that the argument to the Note constructor matches the structure that would be defined in the schema associated with the model.
+        - To save data to the database, we just use the save method associated with the new Note object. Event handlers can be added by using the .then method.
+        - After sending data, we must call mongoose.connection.close, because otherwise the application will stay connected to the url and will never finish execution.
+    
+    Fetching Objects From The Database:
+        - it seems to fetch from a database, we need a model in place.
+        - After creating a model, we can use the find method with a search parameter. More on search queries: https://www.mongodb.com/docs/manual/reference/operator/
+        - don't forget to close the connection
