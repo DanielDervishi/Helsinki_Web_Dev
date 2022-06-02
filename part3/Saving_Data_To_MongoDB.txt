@@ -20,6 +20,7 @@ Debugging Node Apps:
         - defines shape of documents within a collection
         - creating a model is essentailly creating a constructor function for documents. Ex: mongoose.model('Note', noteSchema). Essentially, the first parameter defines the name of the collection which will be the lowercase plural "notes" and the second is the schema which defines the document structure.
         - outline for documents in a collection are defined through schema at the application level to provide structure to the data within collections.
+        - schema are like the blueprints and a model is like a factory that creates the object defined by the blueprints.
     
     Creating and Saving Objects:
         - creating objects is as easy as defining a new js object like so: 
@@ -36,3 +37,29 @@ Debugging Node Apps:
         - it seems to fetch from a database, we need a model in place.
         - After creating a model, we can use the find method with a search parameter. More on search queries: https://www.mongodb.com/docs/manual/reference/operator/
         - don't forget to close the connection
+
+    Backend Connected to a Database:
+        - It is best to save the access password to the database in a .env file (THAT IS REFERENCED IN THE .GITIGNORE FOLDER)
+        - Put the dotenv import before any other code to ensure the use of environment variables within other imports.
+        - You have to set the environment variable in heroku using config vars.
+        - sending the response after assuring the note is sent successfully to the server is preferred.
+    
+    toJSON: 
+        - called on each document that uses this schema when the json.stringify method is called.
+        - Ex: noteSchema.set('toJSON', {
+            transform: (document, returnedObject) => {
+                returnedObject.id = returnedObject._id.toString()
+                delete returnedObject._id
+                delete returnedObject.__v
+                return returnedObject
+            }
+        })
+        - sets the 'toJSON' option of the schema to the object with the transform property set to a callback funtion that takes the document and plain object representation of the note in this case and allows us to make changes to the object before being converted into a JSON string which is only done using JSON.stringify().
+        - defining transforms at the schema level keeps from applying the transform to sub-schema, which is very useful.
+        Docs: https://mongoosejs.com/docs/api.html#document_Document-toObject, https://mongoosejs.com/docs/api.html#document_Document-toObject, https://mongoosejs.com/docs/api.html#schema_Schema-set
+
+    Verifying Frontend and Backend Integration:
+        - take a cascading approach to integrating the frontend and backend one functionality at a time.
+        - make use of the rest client before using the frontend to test integration with the server to better isolate errors.
+
+
