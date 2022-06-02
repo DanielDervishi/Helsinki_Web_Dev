@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
+const Entry = require('./models/entires')
 
 app.use(express.static('build'))
 app.use(cors())
